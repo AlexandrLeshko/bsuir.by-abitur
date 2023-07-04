@@ -1,0 +1,54 @@
+.rslides {
+    position: relative;
+    list-style: none;
+    overflow: hidden;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.rslides li {
+    -webkit-backface-visibility: hidden;
+    position: absolute;
+    display: none;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+.rslides li:first-child {
+    position: relative;
+    display: block;
+    float: left;
+}
+.rslides img {
+    display: block;
+    height: auto;
+    float: left;
+    width: 100%;
+    border: 0;
+}
+.prev { 
+    position: absolute;
+    cursor: pointer;
+    display: block;
+    background: url(../imgs/icons/arrow.png) no-repeat;
+    overflow: hidden;
+    left: 2%;
+    width:40px;
+    height: 40px;
+    top: 40%;
+    z-index: 5;
+    background-position: -123px -40px;
+}
+.next { 
+    position: absolute;
+    cursor: pointer;
+    display: block;
+    background: url(../imgs/icons/arrow.png) no-repeat;
+    overflow: hidden;
+    right: 2%;
+    width:40px;
+    height: 40px;
+    top: 40%;
+    z-index: 5;
+    background-position: -192px -40px;
+}
