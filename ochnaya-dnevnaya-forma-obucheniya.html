@@ -380,16 +380,16 @@
                                 }
                             }
                         }
-                        // $.fn.checkselect = function () {
-                        //     this.wrapInner('<div class="checkselect-popup"></div>');
-                        //     this.prepend('<div class="checkselect-control">' + '<select class="form-control"><option></option></select>' + '<div class="checkselect-over"></div>' + '</div>');
-                        //     this.each(function () {
-                        //         setChecked(this);
-                        //     });
-                        //     this.find('input[type="checkbox"]').click(function () {
-                        //         setChecked($(this).parents(".checkselect"));
-                        //     });
-                        // };
+                        $.fn.checkselect = function () {
+                            this.wrapInner('<div class="checkselect-popup"></div>');
+                            this.prepend('<div class="checkselect-control">' + '<select class="form-control"><option></option></select>' + '<div class="checkselect-over"></div>' + '</div>');
+                            this.each(function () {
+                                setChecked(this);
+                            });
+                            this.find('input[type="checkbox"]').click(function () {
+                                setChecked($(this).parents(".checkselect"));
+                            });
+                        };
                     })(jQuery);
                     $(".checkselect").checkselect();
 //table
