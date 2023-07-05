@@ -45,6 +45,13 @@ footerBanners.addEventListener('mousemove', (e) => {
 });
 footerBanners.addEventListener('mouseup', (e) => {
     isDragging = false;
+    if (scrollPos < 2 * footerBannersContent.offsetWidth / 5) {
+        scrollPos += footerBannersContent.offsetWidth / 5;
+    }
+    if (scrollPos > 3 * footerBannersContent.offsetWidth / 5) {
+        scrollPos -= footerBannersContent.offsetWidth / 5;
+    }
+    footerBanners.scrollLeft = scrollPos;
 });
 const footerBannerCollection = document.querySelectorAll('.footer__banner');
 for (let banner of footerBannerCollection) {
