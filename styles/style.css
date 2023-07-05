@@ -214,11 +214,9 @@ h4 { font-size: 1.6rem; line-height: 2.1rem }
 @media screen and (max-width:768px) {
 	.footer__banners { padding: 15px 12px; font-size: 1.2rem; line-height: 1.6rem }
 }
-
-
-
-
-
+.footer__banners * {
+	user-select: none;
+}
 .footer__banners {
 	max-width: 1240px;
 	margin: 0 auto;
@@ -244,19 +242,6 @@ h4 { font-size: 1.6rem; line-height: 2.1rem }
 	max-height: 50px;
 	aspect-ratio: auto;
 }
-
-
-
-
-
-/*.footer__banner { max-height: 50px }
-@media screen and (max-width:1239px) {
-	.footer__acc { height: 76px; -webkit-box-pack: end; -ms-flex-pack: end; justify-content: flex-end }
-	.footer__banner { max-height: 34px; margin-right: 24px }
-	.footer__banner:last-child { margin-right: 0 }
-}*/
-
-
 .footer__acc-opacity { opacity: .8 }
 .footer__acc-opacity:hover { opacity: 1 }
 .footer { display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column }

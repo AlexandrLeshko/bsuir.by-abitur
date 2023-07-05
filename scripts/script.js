@@ -86,7 +86,7 @@ window.addEventListener("DOMContentLoaded", () => {
     $(this).closest("p.toggler").toggleClass("no-active");
   });
 
-  // //checkselect
+  //checkselect
   (function ($) {
     function setChecked(target) {
       var parent = $(target).closest('div.checkselect');

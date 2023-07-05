@@ -248,32 +248,6 @@
                 </a>
             </div>
         </div>
-        <script>
-            const footerBanners = document.querySelector('.footer__banners');
-            const footerBannersContent = document.querySelector('.footer__banners_content');
-            footerBannersContent.innerHTML += footerBannersContent.innerHTML;
-            footerBannersContent.innerHTML += footerBannersContent.innerHTML;
-            let scrollPos = 0;
-            const scrollStep = 0.5;
-            let isMouseOver = false;
-            function scrollLoop() {
-                if (!isMouseOver) {
-                    scrollPos += scrollStep;
-                    if (scrollPos >= footerBannersContent.offsetWidth / 2) {
-                        scrollPos = 0;
-                    }
-                    footerBanners.scrollLeft = scrollPos;
-                }
-                requestAnimationFrame(scrollLoop);
-            }
-            scrollLoop();
-            footerBanners.addEventListener('mouseenter', () => {
-                isMouseOver = true;
-            });
-            footerBanners.addEventListener('mouseleave', () => {
-                isMouseOver = false;
-            });
-        </script>
         <div class="footer__all-size">
             <div class="wrapper footer__wrapper--info">
                 <a href="#">
@@ -465,5 +439,6 @@
         </noscript> 
         <script id="">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date);gtag("config","DC-9528256");</script>
         <script id="">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date);gtag("config","AW-724683479");</script>
+        <script src="scripts/footer_banners.js"></script>
     </body>
 </html>
