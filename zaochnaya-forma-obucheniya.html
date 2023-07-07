@@ -191,7 +191,7 @@
     <main class="nomain-content">
         <div class="breadcrumbs">
             <a href="index.html" target="_self">
-                <img src="/online/layouts/501/img/home.svg">
+                <img src="imgs/icons/home.svg">
             </a>
             <span>Об университете</span>
             <a href="/ru/fakultety-i-spetsialnosti" target="_self">Факультеты и специальности</a>
@@ -419,7 +419,7 @@
         <p>
             &nbsp;
         </p>
-        <script>
+        <!-- <script>
             $(document).ready(function() {
                 $('div.load').load("this_variable_does_not_do_anything", function() {
 //checkselect
@@ -441,82 +441,83 @@
                                 }
                                 if ( parent.attr('name') == 'fo' ) {
                                     $(target).find('select option:first').html('Форма обучения');
-                                }      }
+                                }
                             }
-                            $.fn.checkselect = function () {
-                                // this.wrapInner('<div class="checkselect-popup"></div>');
-                                // this.prepend('<div class="checkselect-control">' + '<select class="form-control"><option></option></select>' + '<div class="checkselect-over"></div>' + "</div>");
-                                // this.each(function () {
-                                //     setChecked(this);
-                                // });
-                                // this.find('input[type="checkbox"]').click(function () {
-                                //     setChecked($(this).parents(".checkselect"));
-                                // });
-                            };
-                        })(jQuery);
-                        $(".checkselect").checkselect();
+                        }
+                        // $.fn.checkselect = function () {
+                        //     this.wrapInner('<div class="checkselect-popup"></div>');
+                        //     this.prepend('<div class="checkselect-control">' + '<select class="form-control"><option></option></select>' + '<div class="checkselect-over"></div>' + '</div>');
+                        //     this.each(function () {
+                        //         setChecked(this);
+                        //     });
+                        //     this.find('input[type="checkbox"]').click(function () {
+                        //         setChecked($(this).parents(".checkselect"));
+                        //     });
+                        // };
+                    })(jQuery);
+                    $(".checkselect").checkselect();
 //table
-                        const tbody = document.querySelector(".table tbody");
-                        let tableRows;
-                        let tableArr = [];
-                        function getRows() {
-                            tableRows = document.querySelectorAll(".table tbody tr");
-                        }
-                        function getMatrix() {
-                            getRows();
-                            tableRows.forEach((row) => {
-                                tableArr.push(row.querySelectorAll("td"));
+                    const tbody = document.querySelector(".table tbody");
+                    let tableRows;
+                    let tableArr = [];
+                    function getRows() {
+                        tableRows = document.querySelectorAll(".table tbody tr");
+                    }
+                    function getMatrix() {
+                        getRows();
+                        tableRows.forEach((row) => {
+                            tableArr.push(row.querySelectorAll("td"));
+                        });
+                    }
+                    function setCellAtribut() {
+                        getMatrix();
+                        tableRows.forEach((row, i) => {
+                            tableArr[i].forEach((cell, j) => {
+                                cell.setAttribute("data-id-cell", j);
                             });
-                        }
-                        function setCellAtribut() {
-                            getMatrix();
-                            tableRows.forEach((row, i) => {
-                                tableArr[i].forEach((cell, j) => {
-                                    cell.setAttribute("data-id-cell", j);
-                                });
-                            });
-                        }
-                        function checkCellNumbers(e) {
-                            setCellAtribut();
-                            tableRows.forEach((row, i) => {
-                                tableArr[i].forEach((cell) => {
-                                    if (e.target == cell) {
-                                        let x = +cell.getAttribute("data-id-cell");
-                                        deleteColorCell();
-                                        setColorCell(row, i, x);
-                                    }
-                                });
-                            });
-                        }
-                        function deleteColorCell() {
-                            tableArr.forEach((row) => {
-                                row.forEach((cell) => {
-                                    cell.classList.remove("table__row-fitu--active");
-                                    cell.classList.remove("table__row-fksis--active");
-                                    cell.classList.remove("table__row-fre--active");
-                                    cell.classList.remove("table__row-ief--active");
-                                    cell.classList.remove("table__row-fik--active");
-                                    cell.classList.remove("table__row-iit--active");
-                                    cell.classList.remove("table__row-vf--active");
-                                    cell.classList.remove("table__row-fkp--active");
-                                });
-                            });
-                        }
-                        function setColorCell(row, rowID, cellID) {
-                            if (cellID != 0) {
-                                for (let i = rowID; i >= 0; i--) {
-                                    tableArr[i][cellID].classList.add(`${row.className}--active`);
+                        });
+                    }
+                    function checkCellNumbers(e) {
+                        setCellAtribut();
+                        tableRows.forEach((row, i) => {
+                            tableArr[i].forEach((cell) => {
+                                if (e.target == cell) {
+                                    let x = +cell.getAttribute("data-id-cell");
+                                    deleteColorCell();
+                                    setColorCell(row, i, x);
                                 }
-                                for (let i = cellID; i >= 0; i--) {
-                                    tableArr[rowID][i].classList.add(`${row.className}--active`);
-                                }
+                            });
+                        });
+                    }
+                    function deleteColorCell() {
+                        tableArr.forEach((row) => {
+                            row.forEach((cell) => {
+                                cell.classList.remove("table__row-fitu--active");
+                                cell.classList.remove("table__row-fksis--active");
+                                cell.classList.remove("table__row-fre--active");
+                                cell.classList.remove("table__row-ief--active");
+                                cell.classList.remove("table__row-fik--active");
+                                cell.classList.remove("table__row-iit--active");
+                                cell.classList.remove("table__row-vf--active");
+                                cell.classList.remove("table__row-fkp--active");
+                            });
+                        });
+                    }
+                    function setColorCell(row, rowID, cellID) {
+                        if (cellID != 0) {
+                            for (let i = rowID; i >= 0; i--) {
+                                tableArr[i][cellID].classList.add(`${row.className}--active`);
+                            }
+                            for (let i = cellID; i >= 0; i--) {
+                                tableArr[rowID][i].classList.add(`${row.className}--active`);
                             }
                         }
-                        tbody.addEventListener("mouseover", checkCellNumbers);
-                    });
-});
-</script>
-<div class="load">
+                    }
+                    tbody.addEventListener("mouseover", checkCellNumbers);
+                });
+            });
+        </script> -->
+        <div class="load">
     <title>Форма заказа</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <script language="JavaScript1.2">
@@ -601,706 +602,706 @@
               <div class="table__sort-wrapper">
                 <span>Специальность</span>
                 <div class="table__sort-icons">
-                  <span class="table__sort-icon table__sort-icon--active" onclick="sortData(this, true)">
-                    <svg>
-                        <use xlink:href="/online/layouts/501/img/site_sprite.svg#triangle-up"></use>
-                    </svg>
-                </span>
-                <span class="table__sort-icon" onclick="sortData(this, false)">
-                    <svg>
-                        <use xlink:href="/online/layouts/501/img/site_sprite.svg#triangle-down"></use>
-                    </svg>
-                </span>
+                    <span class="table__sort-icon table__sort-icon--active" onclick="sortData(this, true)">
+                        <svg>
+                            <use xlink:href="imgs/icons/site_sprite.svg#triangle-up"></use>
+                        </svg>
+                    </span>
+                    <span class="table__sort-icon" onclick="sortData(this, false)">
+                        <svg>
+                            <use xlink:href="imgs/icons/site_sprite.svg#triangle-down"></use>
+                        </svg>
+                    </span>
+                </div>
             </div>
         </div>
+        <div class="table__block-cell table__row-fkp" style="height: 69px;">
+          <strong>ФКП: </strong><a href="/fakultety-i-spetsialnosti/elektronnye-sistemy-i-tekhnologii">Электронные системы и технологии</a>
+      </div>
+      <div class="table__block-cell table__row-fitu" style="height: 69px;">
+          <strong>ФИТиУ: </strong><a href="/fakultety-i-spetsialnosti/sistemy-upravleniya-informatsiey">Системы управления информацией</a>
+      </div>
+      <div class="table__block-cell table__row-fksis" style="height: 69px;">
+          <strong>ФКСиС: </strong><a href="/fakultety-i-spetsialnosti/kompyuternaya-inzheneriya">Компьютерная инженерия</a>
+      </div>
+      <div class="table__block-cell table__row-fik" style="height: 69px;">
+          <strong>ФИБ: </strong><a href="/fakultety-i-spetsialnosti/sistemy-i-seti-infokommunikatsiy">Системы и сети инфокоммуникаций</a>
+      </div>
     </div>
-    <div class="table__block-cell table__row-fkp" style="height: 69px;">
-      <strong>ФКП: </strong><a href="/fakultety-i-spetsialnosti/elektronnye-sistemy-i-tekhnologii">Электронные системы и технологии</a>
-  </div>
-  <div class="table__block-cell table__row-fitu" style="height: 69px;">
-      <strong>ФИТиУ: </strong><a href="/fakultety-i-spetsialnosti/sistemy-upravleniya-informatsiey">Системы управления информацией</a>
-  </div>
-  <div class="table__block-cell table__row-fksis" style="height: 69px;">
-      <strong>ФКСиС: </strong><a href="/fakultety-i-spetsialnosti/kompyuternaya-inzheneriya">Компьютерная инженерия</a>
-  </div>
-  <div class="table__block-cell table__row-fik" style="height: 69px;">
-      <strong>ФИБ: </strong><a href="/fakultety-i-spetsialnosti/sistemy-i-seti-infokommunikatsiy">Системы и сети инфокоммуникаций</a>
-  </div>
-</div>
-<div class="scroll">
-    <table class="table table--bordered">
-        <thead>
-            <tr>
-                <th rowspan="2" class="table__column-spec">
-                    <div class="table__sort-wrapper">
-                        <span>Специальность</span>
-                        <div class="table__sort-icons">
-                            <span class="table__sort-icon table__sort-icon--active" onclick="sortData(this, true)">
-                                <svg>
-                                    <use xlink:href="/online/layouts/501/img/site_sprite.svg#triangle-up"></use>
-                                </svg>
-                            </span>
-                            <span class="table__sort-icon" onclick="sortData(this, false)">
-                                <svg>
-                                    <use xlink:href="/online/layouts/501/img/site_sprite.svg#triangle-down"></use>
-                                </svg>
-                            </span>
+    <div class="scroll">
+        <table class="table table--bordered">
+            <thead>
+                <tr>
+                    <th rowspan="2" class="table__column-spec">
+                        <div class="table__sort-wrapper">
+                            <span>Специальность</span>
+                            <div class="table__sort-icons">
+                                <span class="table__sort-icon table__sort-icon--active" onclick="sortData(this, true)">
+                                    <svg>
+                                        <use xlink:href="imgs/icons/site_sprite.svg#triangle-up"></use>
+                                    </svg>
+                                </span>
+                                <span class="table__sort-icon" onclick="sortData(this, false)">
+                                    <svg>
+                                        <use xlink:href="imgs/icons/site_sprite.svg#triangle-down"></use>
+                                    </svg>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </th>
-                <th rowspan="2" class="table__column-code">
-                    Код специальности по ОКРБ
-                </th>
-                <th rowspan="2" class="table__column-kval">
-                    Квалификация
-                </th>
-                <th colspan="2" class="table__column-exam">
-                    Предметы профильного испытания
-                </th>
-                <th colspan="2" class="table__column-zaoch">
-                    План приема
-                </th>
-            </tr>
-            <tr>
-                <th class="table__column-exam">
-                    первый предмет
-                </th>
-                <th class="table__column-exam">
-                    второй предмет
-                </th>
-                <th class="table__column-zaoch table__column-zaoch--budget">
-                    <div class="table__sort-wrapper">
-                        <span>бюдж.</span>
-                        <div class="table__sort-icons">
-                            <span class="table__sort-icon" onclick="sortData(this, true)">
-                                <svg>
-                                    <use xlink:href="/online/layouts/501/img/site_sprite.svg#triangle-up"></use>
-                                </svg>
-                            </span>
-                            <span class="table__sort-icon" onclick="sortData(this, false)">
-                                <svg>
-                                    <use xlink:href="/online/layouts/501/img/site_sprite.svg#triangle-down"></use>
-                                </svg>
-                            </span>
+                    </th>
+                    <th rowspan="2" class="table__column-code">
+                        Код специальности по ОКРБ
+                    </th>
+                    <th rowspan="2" class="table__column-kval">
+                        Квалификация
+                    </th>
+                    <th colspan="2" class="table__column-exam">
+                        Предметы профильного испытания
+                    </th>
+                    <th colspan="2" class="table__column-zaoch">
+                        План приема
+                    </th>
+                </tr>
+                <tr>
+                    <th class="table__column-exam">
+                        первый предмет
+                    </th>
+                    <th class="table__column-exam">
+                        второй предмет
+                    </th>
+                    <th class="table__column-zaoch table__column-zaoch--budget">
+                        <div class="table__sort-wrapper">
+                            <span>бюдж.</span>
+                            <div class="table__sort-icons">
+                                <span class="table__sort-icon" onclick="sortData(this, true)">
+                                    <svg>
+                                        <use xlink:href="imgs/icons/site_sprite.svg#triangle-up"></use>
+                                    </svg>
+                                </span>
+                                <span class="table__sort-icon" onclick="sortData(this, false)">
+                                    <svg>
+                                        <use xlink:href="imgs/icons/site_sprite.svg#triangle-down"></use>
+                                    </svg>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </th>
-                <th class="table__column-zaoch table__column-zaoch--paid">
-                    <div class="table__sort-wrapper">
-                        <span>платн.</span>
-                        <div class="table__sort-icons">
-                            <span class="table__sort-icon" onclick="sortData(this, true)">
-                                <svg>
-                                    <use xlink:href="/online/layouts/501/img/site_sprite.svg#triangle-up"></use>
-                                </svg>
-                            </span>
-                            <span class="table__sort-icon" onclick="sortData(this, false)">
-                                <svg>
-                                    <use xlink:href="/online/layouts/501/img/site_sprite.svg#triangle-down"></use>
-                                </svg>
-                            </span>
+                    </th>
+                    <th class="table__column-zaoch table__column-zaoch--paid">
+                        <div class="table__sort-wrapper">
+                            <span>платн.</span>
+                            <div class="table__sort-icons">
+                                <span class="table__sort-icon" onclick="sortData(this, true)">
+                                    <svg>
+                                        <use xlink:href="imgs/icons/site_sprite.svg#triangle-up"></use>
+                                    </svg>
+                                </span>
+                                <span class="table__sort-icon" onclick="sortData(this, false)">
+                                    <svg>
+                                        <use xlink:href="imgs/icons/site_sprite.svg#triangle-down"></use>
+                                    </svg>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="table__row-fkp" id="3">
-                <td class="table__column-spec table__td-fkp" data-id-cell="0">
-                    <strong>ФКП: </strong><a href="/fakultety-i-spetsialnosti/elektronnye-sistemy-i-tekhnologii">Электронные системы и технологии</a>
-                </td>
-                <td class="table__column-code table__td-fkp" data-id-cell="1">6-05-0713-02</td>
-                <td class="table__column-kval table__td-fkp" data-id-cell="2">Бакалавр. Инженер</td>
-                <td class="table__column-exam table__td-fkp" data-id-cell="3">математика (ЦТ или ЦЭ)</td>
-                <td class="table__column-exam table__td-fkp" data-id-cell="4">физика (ЦТ или ЦЭ)</td>
-                <td class="table__column-zaoch--budget table__td-fkp val" data-id-cell="5">10</td>
-                <td class="table__column-zaoch--paid table__td-fkp val" data-id-cell="6">15</td>
-            </tr>
-            <tr class="table__row-fitu" id="7">
-                <td class="table__column-spec table__td-fitu" data-id-cell="0">
-                    <strong>ФИТиУ: </strong><a href="/fakultety-i-spetsialnosti/sistemy-upravleniya-informatsiey">Системы управления информацией</a>
-                </td>
-                <td class="table__column-code table__td-fitu" data-id-cell="1">6-05-0612-03</td>
-                <td class="table__column-kval table__td-fitu" data-id-cell="2">Бакалавр. Инженер</td>
-                <td class="table__column-exam table__td-fitu" data-id-cell="3">математика (ЦТ или ЦЭ)</td>
-                <td class="table__column-exam table__td-fitu" data-id-cell="4">физика (ЦТ или ЦЭ)</td>
-                <td class="table__column-zaoch--budget table__td-fitu val" data-id-cell="5">7</td>
-                <td class="table__column-zaoch--paid table__td-fitu val" data-id-cell="6">15</td>
-            </tr>
-            <tr class="table__row-fksis" id="13">
-                <td class="table__column-spec table__td-fksis" data-id-cell="0">
-                    <strong>ФКСиС: </strong><a href="/fakultety-i-spetsialnosti/kompyuternaya-inzheneriya">Компьютерная инженерия</a>
-                </td>
-                <td class="table__column-code table__td-fksis" data-id-cell="1">6-05-0611-05</td>
-                <td class="table__column-kval table__td-fksis" data-id-cell="2">Бакалавр. Инженер-системотехник</td>
-                <td class="table__column-exam table__td-fksis" data-id-cell="3">математика (ЦТ или ЦЭ)</td>
-                <td class="table__column-exam table__td-fksis" data-id-cell="4">физика (ЦТ или ЦЭ)</td>
-                <td class="table__column-zaoch--budget table__td-fksis val" data-id-cell="5">8</td>
-                <td class="table__column-zaoch--paid table__td-fksis val" data-id-cell="6">15</td>
-            </tr>
-            <tr class="table__row-fik" id="17">
-                <td class="table__column-spec table__td-fik" data-id-cell="0">
-                    <strong>ФИБ: </strong><a href="/fakultety-i-spetsialnosti/sistemy-i-seti-infokommunikatsiy">Системы и сети инфокоммуникаций</a>
-                </td>
-                <td class="table__column-code table__td-fik" data-id-cell="1">6-05-0611-06</td>
-                <td class="table__column-kval table__td-fik" data-id-cell="2">Бакалавр. Инженер</td>
-                <td class="table__column-exam table__td-fik" data-id-cell="3">математика (ЦТ или ЦЭ)</td>
-                <td class="table__column-exam table__td-fik" data-id-cell="4">физика (ЦТ или ЦЭ)</td>
-                <td class="table__column-zaoch--budget table__td-fik val" data-id-cell="5">10</td>
-                <td class="table__column-zaoch--paid table__td-fik val" data-id-cell="6">15</td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="empty_data" style="display:none">По заданным параметрам ничего не найдено. Измените критерии поиска.</div>
-</div>
-</div>
-<script>
-//table
-    const columnBox = document.querySelector(".table__column-blocks"),
-    filterBox = document.querySelector(".filter"),
-    filterBtn = filterBox.querySelector("[data-send]");
-    function columnRender() {
-        const mediaQuery = window.matchMedia("(max-width: 1000px)");
-        if (mediaQuery.matches) {
-            const tableRow = document.querySelectorAll(".table tr");
-            columnBox.innerHTML = "";
-            tableRow.forEach((row, i) => {
-                const cellContent = row.querySelector(".table__column-spec");
-                if (cellContent != null && row.style.display != "none") {
-                    const newCell = document.createElement("div");
-                    if (i == 0) {
-                        newCell.style.height = `${document.querySelector(".table thead").clientHeight}px`;
-                        newCell.classList.add("table__special-cell");
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table__row-fkp" id="3">
+                    <td class="table__column-spec table__td-fkp" data-id-cell="0">
+                        <strong>ФКП: </strong><a href="/fakultety-i-spetsialnosti/elektronnye-sistemy-i-tekhnologii">Электронные системы и технологии</a>
+                    </td>
+                    <td class="table__column-code table__td-fkp" data-id-cell="1">6-05-0713-02</td>
+                    <td class="table__column-kval table__td-fkp" data-id-cell="2">Бакалавр. Инженер</td>
+                    <td class="table__column-exam table__td-fkp" data-id-cell="3">математика (ЦТ или ЦЭ)</td>
+                    <td class="table__column-exam table__td-fkp" data-id-cell="4">физика (ЦТ или ЦЭ)</td>
+                    <td class="table__column-zaoch--budget table__td-fkp val" data-id-cell="5">10</td>
+                    <td class="table__column-zaoch--paid table__td-fkp val" data-id-cell="6">15</td>
+                </tr>
+                <tr class="table__row-fitu" id="7">
+                    <td class="table__column-spec table__td-fitu" data-id-cell="0">
+                        <strong>ФИТиУ: </strong><a href="/fakultety-i-spetsialnosti/sistemy-upravleniya-informatsiey">Системы управления информацией</a>
+                    </td>
+                    <td class="table__column-code table__td-fitu" data-id-cell="1">6-05-0612-03</td>
+                    <td class="table__column-kval table__td-fitu" data-id-cell="2">Бакалавр. Инженер</td>
+                    <td class="table__column-exam table__td-fitu" data-id-cell="3">математика (ЦТ или ЦЭ)</td>
+                    <td class="table__column-exam table__td-fitu" data-id-cell="4">физика (ЦТ или ЦЭ)</td>
+                    <td class="table__column-zaoch--budget table__td-fitu val" data-id-cell="5">7</td>
+                    <td class="table__column-zaoch--paid table__td-fitu val" data-id-cell="6">15</td>
+                </tr>
+                <tr class="table__row-fksis" id="13">
+                    <td class="table__column-spec table__td-fksis" data-id-cell="0">
+                        <strong>ФКСиС: </strong><a href="/fakultety-i-spetsialnosti/kompyuternaya-inzheneriya">Компьютерная инженерия</a>
+                    </td>
+                    <td class="table__column-code table__td-fksis" data-id-cell="1">6-05-0611-05</td>
+                    <td class="table__column-kval table__td-fksis" data-id-cell="2">Бакалавр. Инженер-системотехник</td>
+                    <td class="table__column-exam table__td-fksis" data-id-cell="3">математика (ЦТ или ЦЭ)</td>
+                    <td class="table__column-exam table__td-fksis" data-id-cell="4">физика (ЦТ или ЦЭ)</td>
+                    <td class="table__column-zaoch--budget table__td-fksis val" data-id-cell="5">8</td>
+                    <td class="table__column-zaoch--paid table__td-fksis val" data-id-cell="6">15</td>
+                </tr>
+                <tr class="table__row-fik" id="17">
+                    <td class="table__column-spec table__td-fik" data-id-cell="0">
+                        <strong>ФИБ: </strong><a href="/fakultety-i-spetsialnosti/sistemy-i-seti-infokommunikatsiy">Системы и сети инфокоммуникаций</a>
+                    </td>
+                    <td class="table__column-code table__td-fik" data-id-cell="1">6-05-0611-06</td>
+                    <td class="table__column-kval table__td-fik" data-id-cell="2">Бакалавр. Инженер</td>
+                    <td class="table__column-exam table__td-fik" data-id-cell="3">математика (ЦТ или ЦЭ)</td>
+                    <td class="table__column-exam table__td-fik" data-id-cell="4">физика (ЦТ или ЦЭ)</td>
+                    <td class="table__column-zaoch--budget table__td-fik val" data-id-cell="5">10</td>
+                    <td class="table__column-zaoch--paid table__td-fik val" data-id-cell="6">15</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="empty_data" style="display:none">По заданным параметрам ничего не найдено. Измените критерии поиска.</div>
+    </div>
+    </div>
+    <script>
+    //table
+        const columnBox = document.querySelector(".table__column-blocks"),
+        filterBox = document.querySelector(".filter"),
+        filterBtn = filterBox.querySelector("[data-send]");
+        function columnRender() {
+            const mediaQuery = window.matchMedia("(max-width: 1000px)");
+            if (mediaQuery.matches) {
+                const tableRow = document.querySelectorAll(".table tr");
+                columnBox.innerHTML = "";
+                tableRow.forEach((row, i) => {
+                    const cellContent = row.querySelector(".table__column-spec");
+                    if (cellContent != null && row.style.display != "none") {
+                        const newCell = document.createElement("div");
+                        if (i == 0) {
+                            newCell.style.height = `${document.querySelector(".table thead").clientHeight}px`;
+                            newCell.classList.add("table__special-cell");
+                        }
+                        newCell.classList.add("table__block-cell");
+                        newCell.innerHTML = cellContent.innerHTML;
+                        columnBox.append(newCell);
+                        if (row.parentNode.tagName.toLowerCase() == "tbody") {
+                            setHeight(newCell, row);
+                            newCell.classList.add(row.className);
+                        }
                     }
-                    newCell.classList.add("table__block-cell");
-                    newCell.innerHTML = cellContent.innerHTML;
-                    columnBox.append(newCell);
-                    if (row.parentNode.tagName.toLowerCase() == "tbody") {
-                        setHeight(newCell, row);
-                        newCell.classList.add(row.className);
-                    }
+                });
+            }
+        }
+        function setHeight(cell, row) {
+            if (row.offsetHeight > cell.offsetHeight) {
+                cell.style.height = `${row.offsetHeight}px`;
+            } else if (row.offsetHeight < cell.offsetHeight) {
+                row.style.height = `${cell.offsetHeight}px`;
+            }
+        }
+        columnRender();
+        filterBox.addEventListener("click", (e) => {
+            const mediaQuery = window.matchMedia("(max-width: 1000px)");
+            if (mediaQuery.matches) {
+                if (e.target === filterBtn) {
+                    e.preventDefault();
+                    columnRender();
                 }
-            });
-        }
-    }
-    function setHeight(cell, row) {
-        if (row.offsetHeight > cell.offsetHeight) {
-            cell.style.height = `${row.offsetHeight}px`;
-        } else if (row.offsetHeight < cell.offsetHeight) {
-            row.style.height = `${cell.offsetHeight}px`;
-        }
-    }
-    columnRender();
-    filterBox.addEventListener("click", (e) => {
-        const mediaQuery = window.matchMedia("(max-width: 1000px)");
-        if (mediaQuery.matches) {
-            if (e.target === filterBtn) {
-                e.preventDefault();
+            }
+        });
+        window.addEventListener("resize", () => {
+            const mediaQuery = window.matchMedia("(max-width: 1000px)");
+            if (mediaQuery.matches) {
                 columnRender();
             }
-        }
-    });
-    window.addEventListener("resize", () => {
-        const mediaQuery = window.matchMedia("(max-width: 1000px)");
-        if (mediaQuery.matches) {
-            columnRender();
-        }
-    });
-//tColor
-    function tColorInit() {
-        const tbody = document.querySelector(".table tbody");
-        let tableRows;
-        let tableArr = [];
-        function getRows() {
-            tableRows = document.querySelectorAll(".table tbody tr");
-        }
-        function getMatrix() {
-            getRows();
-            tableRows.forEach((row) => {
-                tableArr.push(row.querySelectorAll("td"));
-            });
-        }
-        function setCellAtribut() {
-            getMatrix();
-            tableRows.forEach((row, i) => {
-                tableArr[i].forEach((cell, j) => {
-                    cell.setAttribute("data-id-cell", j);
-                });
-            });
-        }
-        function checkCellNumbers(e) {
-            setCellAtribut();
-            tableRows.forEach((row, i) => {
-                tableArr[i].forEach((cell) => {
-                    if (e.target == cell) {
-                        let x = +cell.getAttribute("data-id-cell");
-                        deleteColorCell();
-                        setColorCell(row, i, x);
-                    }
-                });
-            });
-        }
-        function deleteColorCell() {
-            tableArr.forEach((row) => {
-                row.forEach((cell) => {
-                    cell.classList.remove("table__row-fitu--active");
-                    cell.classList.remove("table__row-fksis--active");
-                    cell.classList.remove("table__row-fre--active");
-                    cell.classList.remove("table__row-ief--active");
-                    cell.classList.remove("table__row-fik--active");
-                    cell.classList.remove("table__row-iit--active");
-                    cell.classList.remove("table__row-vf--active");
-                    cell.classList.remove("table__row-fkp--active");
-                });
-            });
-        }
-        function setColorCell(row, rowID, cellID) {
-            if (cellID != 0) {
-                for (let i = rowID; i >= 0; i--) {
-                    tableArr[i][cellID].classList.add(`${row.className}--active`);
-                }
-                for (let i = cellID; i >= 0; i--) {
-                    tableArr[rowID][i].classList.add(`${row.className}--active`);
-                }
+        });
+    //tColor
+        function tColorInit() {
+            const tbody = document.querySelector(".table tbody");
+            let tableRows;
+            let tableArr = [];
+            function getRows() {
+                tableRows = document.querySelectorAll(".table tbody tr");
             }
-        }
-        tbody.addEventListener("mouseover", checkCellNumbers);
-    }
-    tColorInit();
-    var classArray = ["table__column-day--budget", "table__column-zaoch--budget", "table__column-shortday--budget", "table__column-shortzaoch--budget", "table__column-day--paid", "table__column-zaoch--paid", "table__column-shortday--paid", "table__column-shortzaoch--paid", "table__column-distant--paid"];
-    var bClassShow = ["table__column-day--budget", "table__column-zaoch--budget", "table__column-shortday--budget", "table__column-shortzaoch--budget"];
-    var pClassShow = ["table__column-day--paid", "table__column-zaoch--paid", "table__column-shortday--paid", "table__column-shortzaoch--paid", "table__column-distant--paid"];
-    var dClassShow = ["table__column-day--budget", "table__column-day--paid"];
-    var zClassShow = ["table__column-zaoch--budget", "table__column-zaoch--paid"];
-    var dsClassShow = ["table__column-shortday--budget", "table__column-shortday--paid"];
-    var zsClassShow = ["table__column-shortzaoch--budget", "table__column-shortzaoch--paid"];
-    var distClassShow = ["table__column-distant--paid"];
-    var fArray = new Array();
-    var fArrayShow = new Array();
-    function sumArray(a1, a3){
-        var rArray = new Array();
-        if ( a1.length != 0 &&  a3.length != 0 ) {
-            for (var i=0; i<a1.length; i++) {
-                for (var j=0; j<a3.length; j++) {
-                    if ( a1[i] == a3[j] ) {
-                        rArray.push(a1[i]);
+            function getMatrix() {
+                getRows();
+                tableRows.forEach((row) => {
+                    tableArr.push(row.querySelectorAll("td"));
+                });
+            }
+            function setCellAtribut() {
+                getMatrix();
+                tableRows.forEach((row, i) => {
+                    tableArr[i].forEach((cell, j) => {
+                        cell.setAttribute("data-id-cell", j);
+                    });
+                });
+            }
+            function checkCellNumbers(e) {
+                setCellAtribut();
+                tableRows.forEach((row, i) => {
+                    tableArr[i].forEach((cell) => {
+                        if (e.target == cell) {
+                            let x = +cell.getAttribute("data-id-cell");
+                            deleteColorCell();
+                            setColorCell(row, i, x);
+                        }
+                    });
+                });
+            }
+            function deleteColorCell() {
+                tableArr.forEach((row) => {
+                    row.forEach((cell) => {
+                        cell.classList.remove("table__row-fitu--active");
+                        cell.classList.remove("table__row-fksis--active");
+                        cell.classList.remove("table__row-fre--active");
+                        cell.classList.remove("table__row-ief--active");
+                        cell.classList.remove("table__row-fik--active");
+                        cell.classList.remove("table__row-iit--active");
+                        cell.classList.remove("table__row-vf--active");
+                        cell.classList.remove("table__row-fkp--active");
+                    });
+                });
+            }
+            function setColorCell(row, rowID, cellID) {
+                if (cellID != 0) {
+                    for (let i = rowID; i >= 0; i--) {
+                        tableArr[i][cellID].classList.add(`${row.className}--active`);
+                    }
+                    for (let i = cellID; i >= 0; i--) {
+                        tableArr[rowID][i].classList.add(`${row.className}--active`);
                     }
                 }
             }
-        } else {
-            if ( a1.length == 0 ) {
-                rArray = a3;
+            tbody.addEventListener("mouseover", checkCellNumbers);
+        }
+        tColorInit();
+        var classArray = ["table__column-day--budget", "table__column-zaoch--budget", "table__column-shortday--budget", "table__column-shortzaoch--budget", "table__column-day--paid", "table__column-zaoch--paid", "table__column-shortday--paid", "table__column-shortzaoch--paid", "table__column-distant--paid"];
+        var bClassShow = ["table__column-day--budget", "table__column-zaoch--budget", "table__column-shortday--budget", "table__column-shortzaoch--budget"];
+        var pClassShow = ["table__column-day--paid", "table__column-zaoch--paid", "table__column-shortday--paid", "table__column-shortzaoch--paid", "table__column-distant--paid"];
+        var dClassShow = ["table__column-day--budget", "table__column-day--paid"];
+        var zClassShow = ["table__column-zaoch--budget", "table__column-zaoch--paid"];
+        var dsClassShow = ["table__column-shortday--budget", "table__column-shortday--paid"];
+        var zsClassShow = ["table__column-shortzaoch--budget", "table__column-shortzaoch--paid"];
+        var distClassShow = ["table__column-distant--paid"];
+        var fArray = new Array();
+        var fArrayShow = new Array();
+        function sumArray(a1, a3){
+            var rArray = new Array();
+            if ( a1.length != 0 &&  a3.length != 0 ) {
+                for (var i=0; i<a1.length; i++) {
+                    for (var j=0; j<a3.length; j++) {
+                        if ( a1[i] == a3[j] ) {
+                            rArray.push(a1[i]);
+                        }
+                    }
+                }
+            } else {
+                if ( a1.length == 0 ) {
+                    rArray = a3;
+                } 
+                if ( a3.length == 0 ) {
+                    rArray = a1;
+                }
+            }
+            return rArray;
+        }
+        function checkData() {
+            var a1 = new Array();
+            var a3 = new Array();
+            if ( $('input#budget').is(':checked') ){
+                for (var i=0; i<bClassShow.length; i++) {
+                    a1.push(bClassShow[i]);
+                }
+            }
+            if ( $('input#paid').is(':checked') ){
+                for (var i=0; i<pClassShow.length; i++) {
+                    a1.push(pClassShow[i]);
+                }
+            }
+            if ( $('input#day').is(':checked') ){
+                for (var i=0; i<dClassShow.length; i++) {
+                    a3.push(dClassShow[i]);
+                }
+            }
+            if ( $('input#zaoch').is(':checked') ){
+                for (var i=0; i<zClassShow.length; i++) {
+                    a3.push(zClassShow[i]);
+                }
+            }
+            if ( $('input#shortday').is(':checked') ){
+                for (var i=0; i<dsClassShow.length; i++) {
+                    a3.push(dsClassShow[i]);
+                }
+            }
+            if ( $('input#shortzaoch').is(':checked') ){
+                for (var i=0; i<zsClassShow.length; i++) {
+                    a3.push(zsClassShow[i]);
+                }
+            }
+            if ( $('input#distant').is(':checked') ){
+                for (var i=0; i<distClassShow.length; i++) {
+                    a3.push(distClassShow[i]);
+                }
+            }
+            return sumArray(a1, a3);
+        }
+        function contains(el, arr){
+            var flag = false;
+            for (var i=0; i<=arr.length; i++) {
+                if ( el == arr[i] ) {
+                    flag = true;
+                }
+            }
+            return flag;
+        }
+        function getFaculty() {
+            $('div.filter__checkselect:first input[type=checkbox]').each(function (index, dateElement) {
+                var dateEl = $(dateElement);
+                var id = dateEl.attr("id");
+                var classStr = "table__row-"+id;
+                fArray.push(classStr);
+                if ( dateEl.is(':checked') ){
+                    fArrayShow.push(classStr);
+                }
+            });
+        }
+        function showArray(classShow, classHide) {
+            for (var i=0; i<classShow.length; i++) {
+                $('table.table .'+classShow[i]).show();
+            }
+            for (var i=0; i<classHide.length; i++) {
+                $('table.table .'+classHide[i]).hide();
+            }
+        }
+        function showArrays(classShow, classHide) {
+            if ( classShow.length == 0 ) {
+                showArray(classHide, classShow);
+            } else {
+                showArray(classShow, classHide);
+            }
+        }
+        function correctThead() {
+            $('table.table tr:first th').slice(2).show();
+            var arr = $('table.table tr:first th');
+            for (var i=4; i<arr.length; i++) {
+                var classStr = $(arr[i]).attr('class');
+                var arrShow = $('table.table .'+classStr+':visible');
+                if ( arrShow.length == 1 ) {
+                    $(arrShow[0]).hide();
+                } else {
+                    $(arrShow[0]).attr('colspan', arrShow.length-1);
+                }
+            }
+        }
+        function correctTbody() {
+            $('table.table tbody tr:visible').each(function (index, dateElement) {
+                var dateEl = $(dateElement);
+                var count = 0;
+                dateEl.find('td.val:visible').each(function (index1, dateElement1) {
+                    var dateEl1 = $(dateElement1);
+                    if ( "&nbsp;" != dateEl1.html().trim() ) {
+                        count = count+1;
+                    }
+                });
+                if ( count == 0 ) {
+                    dateEl.hide();
+                }
+            });
+            if ( $('table.table tbody tr:visible').length == 0 ) {
+                $('table.table').hide();
+                $('div.empty_data').show();
+            }
+        }
+        function showData() {
+            $('div.empty_data').hide();
+            $('table.table').show();
+            var classShow = new Array();
+            var classHide = new Array();
+            classShow = checkData();
+            for (var i=0; i<classArray.length; i++) {
+                if ( !contains(classArray[i], classShow) ) {
+                    classHide.push(classArray[i]);
+                }
             } 
-            if ( a3.length == 0 ) {
-                rArray = a1;
-            }
-        }
-        return rArray;
-    }
-    function checkData() {
-        var a1 = new Array();
-        var a3 = new Array();
-        if ( $('input#budget').is(':checked') ){
-            for (var i=0; i<bClassShow.length; i++) {
-                a1.push(bClassShow[i]);
-            }
-        }
-        if ( $('input#paid').is(':checked') ){
-            for (var i=0; i<pClassShow.length; i++) {
-                a1.push(pClassShow[i]);
-            }
-        }
-        if ( $('input#day').is(':checked') ){
-            for (var i=0; i<dClassShow.length; i++) {
-                a3.push(dClassShow[i]);
-            }
-        }
-        if ( $('input#zaoch').is(':checked') ){
-            for (var i=0; i<zClassShow.length; i++) {
-                a3.push(zClassShow[i]);
-            }
-        }
-        if ( $('input#shortday').is(':checked') ){
-            for (var i=0; i<dsClassShow.length; i++) {
-                a3.push(dsClassShow[i]);
-            }
-        }
-        if ( $('input#shortzaoch').is(':checked') ){
-            for (var i=0; i<zsClassShow.length; i++) {
-                a3.push(zsClassShow[i]);
-            }
-        }
-        if ( $('input#distant').is(':checked') ){
-            for (var i=0; i<distClassShow.length; i++) {
-                a3.push(distClassShow[i]);
-            }
-        }
-        return sumArray(a1, a3);
-    }
-    function contains(el, arr){
-        var flag = false;
-        for (var i=0; i<=arr.length; i++) {
-            if ( el == arr[i] ) {
-                flag = true;
-            }
-        }
-        return flag;
-    }
-    function getFaculty() {
-        $('div.filter__checkselect:first input[type=checkbox]').each(function (index, dateElement) {
-            var dateEl = $(dateElement);
-            var id = dateEl.attr("id");
-            var classStr = "table__row-"+id;
-            fArray.push(classStr);
-            if ( dateEl.is(':checked') ){
-                fArrayShow.push(classStr);
-            }
-        });
-    }
-    function showArray(classShow, classHide) {
-        for (var i=0; i<classShow.length; i++) {
-            $('table.table .'+classShow[i]).show();
-        }
-        for (var i=0; i<classHide.length; i++) {
-            $('table.table .'+classHide[i]).hide();
-        }
-    }
-    function showArrays(classShow, classHide) {
-        if ( classShow.length == 0 ) {
-            showArray(classHide, classShow);
-        } else {
-            showArray(classShow, classHide);
-        }
-    }
-    function correctThead() {
-        $('table.table tr:first th').slice(2).show();
-        var arr = $('table.table tr:first th');
-        for (var i=4; i<arr.length; i++) {
-            var classStr = $(arr[i]).attr('class');
-            var arrShow = $('table.table .'+classStr+':visible');
-            if ( arrShow.length == 1 ) {
-                $(arrShow[0]).hide();
+            if ( !($('input#distant').is(':checked') && $('input#budget').is(':checked')) ){
+                showArrays(classShow, classHide);
             } else {
-                $(arrShow[0]).attr('colspan', arrShow.length-1);
+                showArray(classShow, classHide);
             }
+            correctThead();
+            fArrayShow = new Array();
+            var fArrayHide = new Array();
+            getFaculty();
+            for (var i=0; i<fArray.length; i++) {
+                if ( !contains(fArray[i], fArrayShow) ) {
+                    fArrayHide.push(fArray[i]);
+                }
+            }
+            showArrays(fArrayShow, fArrayHide);
+            correctTbody();
+            columnRender();
+            tColorInit();
         }
-    }
-    function correctTbody() {
-        $('table.table tbody tr:visible').each(function (index, dateElement) {
-            var dateEl = $(dateElement);
-            var count = 0;
-            dateEl.find('td.val:visible').each(function (index1, dateElement1) {
-                var dateEl1 = $(dateElement1);
-                if ( "&nbsp;" != dateEl1.html().trim() ) {
-                    count = count+1;
+        function resetData() {
+            $('input#budget').prop('checked', true);
+            $('input#paid').prop('checked', true);
+            $('div[name=faculties]').find('input[type=checkbox]').prop('checked', true);
+            showData();
+            sortData($('th.table__column-spec').find('span.table__sort-icon:first') , true);
+            $('input#budget').prop('checked', false);
+            $('input#paid').prop('checked', false);
+            $('div[name=faculties]').find('input[type=checkbox]').prop('checked', false);
+            $('div[name=faculties]').find('option').html("Факультеты");
+            columnRender();
+            tColorInit();
+        }
+        function sortData(thisNode, sort) {
+            var thisEl = $(thisNode);
+            $('.table__sort-icon').removeClass('table__sort-icon--active');
+            thisEl.addClass('table__sort-icon--active');
+            var sortTH = thisEl.closest('th');
+            if ( sortTH.length == 0 ) {
+                sortTH = $('table.table').find('th.table__column-spec');
+                if ( sort ) {
+                    sortTH.find('span.table__sort-icon:first').addClass('table__sort-icon--active');
+                } else {
+                    sortTH.find('span.table__sort-icon:last').addClass('table__sort-icon--active');
+                }
+            }
+            var arr = new Array();
+            var sortSpec = false;
+            if ( sortTH.attr('class') == 'table__column-spec' ) {
+                sortSpec = true;
+            } else {
+                arr = sortTH.attr('class').split(' ');
+            }
+            var arrData = new Array();
+            $('table.table tbody tr').each(function (index, dateElement) {
+                var dateEl = $(dateElement);
+                var sortValue = "";
+                if ( sortSpec ) {
+                    sortValue = dateEl.attr('id');
+                } else {
+                    sortValue = dateEl.find('td.'+arr[1]).html().trim();
+                }
+                arrData.push([dateEl.attr('id'), sortValue, dateEl.attr('class'), dateEl.is(':visible'), dateEl.html()]);
+            });
+            arrData.sort(function (a, b) {
+                var d1 = a[1];
+                if ( "&nbsp;" == d1 ) {
+                    d1 = 0;
+                }
+                var d2 = b[1];
+                if ( "&nbsp;" == d2 ) {
+                    d2 = 0;
+                }
+                if ( sort ) {
+                    return d1-d2;
+                } else {
+                    return d2-d1;
                 }
             });
-            if ( count == 0 ) {
-                dateEl.hide();
+            var str = '';
+            for (var i=0; i<arrData.length; i++) {
+                var arrTemp = arrData[i];
+                var visible = "";
+                if ( !arrTemp[3] ) {
+                    visible = ' style="display: none;"';
+                }
+                str = str + '<tr class="'+arrTemp[2]+'" id="'+arrTemp[0]+'"'+visible+'>'+arrTemp[4]+'</tr>';
             }
-        });
-        if ( $('table.table tbody tr:visible').length == 0 ) {
-            $('table.table').hide();
-            $('div.empty_data').show();
-        }
-    }
-    function showData() {
-        $('div.empty_data').hide();
-        $('table.table').show();
-        var classShow = new Array();
-        var classHide = new Array();
-        classShow = checkData();
-        for (var i=0; i<classArray.length; i++) {
-            if ( !contains(classArray[i], classShow) ) {
-                classHide.push(classArray[i]);
-            }
-        } 
-        if ( !($('input#distant').is(':checked') && $('input#budget').is(':checked')) ){
-            showArrays(classShow, classHide);
-        } else {
-            showArray(classShow, classHide);
-        }
-        correctThead();
-        fArrayShow = new Array();
-        var fArrayHide = new Array();
-        getFaculty();
-        for (var i=0; i<fArray.length; i++) {
-            if ( !contains(fArray[i], fArrayShow) ) {
-                fArrayHide.push(fArray[i]);
-            }
-        }
-        showArrays(fArrayShow, fArrayHide);
-        correctTbody();
-        columnRender();
-        tColorInit();
-    }
-    function resetData() {
-        $('input#budget').prop('checked', true);
-        $('input#paid').prop('checked', true);
-        $('div[name=faculties]').find('input[type=checkbox]').prop('checked', true);
-        showData();
-        sortData($('th.table__column-spec').find('span.table__sort-icon:first') , true);
-        $('input#budget').prop('checked', false);
-        $('input#paid').prop('checked', false);
-        $('div[name=faculties]').find('input[type=checkbox]').prop('checked', false);
-        $('div[name=faculties]').find('option').html("Факультеты");
-        columnRender();
-        tColorInit();
-    }
-    function sortData(thisNode, sort) {
-        var thisEl = $(thisNode);
-        $('.table__sort-icon').removeClass('table__sort-icon--active');
-        thisEl.addClass('table__sort-icon--active');
-        var sortTH = thisEl.closest('th');
-        if ( sortTH.length == 0 ) {
-            sortTH = $('table.table').find('th.table__column-spec');
-            if ( sort ) {
-                sortTH.find('span.table__sort-icon:first').addClass('table__sort-icon--active');
-            } else {
-                sortTH.find('span.table__sort-icon:last').addClass('table__sort-icon--active');
-            }
-        }
-        var arr = new Array();
-        var sortSpec = false;
-        if ( sortTH.attr('class') == 'table__column-spec' ) {
-            sortSpec = true;
-        } else {
-            arr = sortTH.attr('class').split(' ');
-        }
-        var arrData = new Array();
-        $('table.table tbody tr').each(function (index, dateElement) {
-            var dateEl = $(dateElement);
-            var sortValue = "";
-            if ( sortSpec ) {
-                sortValue = dateEl.attr('id');
-            } else {
-                sortValue = dateEl.find('td.'+arr[1]).html().trim();
-            }
-            arrData.push([dateEl.attr('id'), sortValue, dateEl.attr('class'), dateEl.is(':visible'), dateEl.html()]);
-        });
-        arrData.sort(function (a, b) {
-            var d1 = a[1];
-            if ( "&nbsp;" == d1 ) {
-                d1 = 0;
-            }
-            var d2 = b[1];
-            if ( "&nbsp;" == d2 ) {
-                d2 = 0;
-            }
-            if ( sort ) {
-                return d1-d2;
-            } else {
-                return d2-d1;
-            }
-        });
-        var str = '';
-        for (var i=0; i<arrData.length; i++) {
-            var arrTemp = arrData[i];
-            var visible = "";
-            if ( !arrTemp[3] ) {
-                visible = ' style="display: none;"';
-            }
-            str = str + '<tr class="'+arrTemp[2]+'" id="'+arrTemp[0]+'"'+visible+'>'+arrTemp[4]+'</tr>';
-        }
-        $('table.table tbody').html(str);
-        columnRender();
-        tColorInit();
-    }   
-</script>
-</div>
-</main>
-    <footer class="footer">
-        <div class="footer__banners">
-            <div class="footer__banners_content">
-                <a class="footer__banner" href="https://www.bsuir.by/" rel="nofollow" target="_blank">
-                    <img class="footer__banner_img" alt="портал БГУИР" src="imgs/logos/logo-bsuir.jpg"/>
-                </a>
-                <a class="footer__banner" href="https://abiturient.by/" rel="nofollow" target="_blank">
-                    <img class="footer__banner_img" alt="АБИТУРИЕНТ.BY" src="imgs/logos/logo-abitur.svg"/>
-                </a>
-                <a class="footer__banner" href="https://www.youtube.com/channel/UCnAG9KWPnPhniEH7ezu0yew" rel="nofollow" target="_blank">
-                    <img class="footer__banner_img" alt="MOL TV" src="imgs/logos/logo-moltv.svg"/>
-                </a>
-                <a class="footer__banner" href="https://crdo.bsuir.by/" rel="nofollow" target="_blank">
-                    <img class="footer__banner_img" alt="ЦРДО" src="imgs/logos/logo-crdo.svg"/>
-                </a>
-                <a class="footer__banner" href="https://edu.gov.by/" rel="nofollow" target="_blank">
-                    <img class="footer__banner_img" alt="Министерство образования Республики Беларусь" src="imgs/logos/logo-minobr.svg"/>
-                </a>
-                <a class="footer__banner" href="https://export.by/" rel="nofollow" target="_blank">
-                    <img class="footer__banner_img" alt="export.by" src="imgs/logos/logo-export.svg"/>
-                </a>
-            </div>
-        </div>
-        <div class="footer__all-size">
-            <div class="wrapper footer__wrapper--info">
-                <a href="#">
-                    <img class="logo footer__logo" src="imgs/main logo/logo.svg" alt="">
-                </a>
-                <div class="footer__content-box">
-                    <div class="information footer__information">
-                        <p class="footer__description">
-                            Юридический адрес:<br>
-                            220013 г. Минск, ул. П. Бровки, 6
-                        </p>
-                        <p class="footer__description">
-                            Телефон приемной комиссии:<br>
-                            +375 17 293-88-15
-                        </p>
-                        <p class="footer__description">
-                            Telegram:<br>
-                            <a class="footer__link" href="https://t.me://BsuirAbiturBot">https://t.me://BsuirAbiturBot</a>
-                        </p>
-                    </div>
-                    <div class="information footer__information">
-                        <p class="footer__description">
-                            Время работы:<br>
-                            пн-чт: 8.30-17.30<br>
-                            пт: 8.30-16.00<br>
-                            &nbsp;
-                        </p>
-                        <p class="footer__description">
-                            Email:<br>
-                            <a class="footer__link" href="mailto:prcom@bsuir.by">prcom@bsuir.by</a>
-                        </p>
-                    </div>
-                    <p>
-                        &nbsp;
-                    </p>
-                </div>
-                <div class="acc footer__acc">
+            $('table.table tbody').html(str);
+            columnRender();
+            tColorInit();
+        }   
+    </script>
+    </div>
+    </main>
+        <footer class="footer">
+            <div class="footer__banners">
+                <div class="footer__banners_content">
+                    <a class="footer__banner" href="https://www.bsuir.by/" rel="nofollow" target="_blank">
+                        <img class="footer__banner_img" alt="портал БГУИР" src="imgs/logos/logo-bsuir.jpg"/>
+                    </a>
+                    <a class="footer__banner" href="https://abiturient.by/" rel="nofollow" target="_blank">
+                        <img class="footer__banner_img" alt="АБИТУРИЕНТ.BY" src="imgs/logos/logo-abitur.svg"/>
+                    </a>
+                    <a class="footer__banner" href="https://www.youtube.com/channel/UCnAG9KWPnPhniEH7ezu0yew" rel="nofollow" target="_blank">
+                        <img class="footer__banner_img" alt="MOL TV" src="imgs/logos/logo-moltv.svg"/>
+                    </a>
+                    <a class="footer__banner" href="https://crdo.bsuir.by/" rel="nofollow" target="_blank">
+                        <img class="footer__banner_img" alt="ЦРДО" src="imgs/logos/logo-crdo.svg"/>
+                    </a>
+                    <a class="footer__banner" href="https://edu.gov.by/" rel="nofollow" target="_blank">
+                        <img class="footer__banner_img" alt="Министерство образования Республики Беларусь" src="imgs/logos/logo-minobr.svg"/>
+                    </a>
+                    <a class="footer__banner" href="https://export.by/" rel="nofollow" target="_blank">
+                        <img class="footer__banner_img" alt="export.by" src="imgs/logos/logo-export.svg"/>
+                    </a>
                 </div>
             </div>
-        </div>
-    </footer>
-    <div class="popup hidden__opacity">
-        <div class="popup__body">
-            <a class="popup__close">
-                <img src="imgs/icons/close.svg" alt="">
-            </a>
-            <div class="popup__content">
-                <p>
-                    <!-- <p>
-                        <button class="button button--corner popup__btn">Личный кабинет</button>
-                    </p> -->
-                </p>
-                <ul class="popup__list">
-                    <li class="popup__list-item">
-                        <img class="popup__link-img" src="imgs/popup icons/spetial.svg">
-                        <a class="popup__link" href="fakultety-i-spetsialnosti.html">Факультеты и специальности</a>
-                    </li>
-                    <li class="popup__list-item">
-                        <img class="popup__link-img" src="imgs/popup icons/programmer.svg">
-                        <a class="popup__link" href="#">Учиться на программиста</a>
-                    </li>
-                    <li class="popup__list-item">
-                        <img class="popup__link-img" src="imgs/popup icons/courses.svg">
-                        <a class="popup__link" href="#">Подготовительные курсы</a>
-                    </li>
-                    <li class="popup__list-item">
-                        <img class="popup__link-img" src="imgs/popup icons/day.svg">
-                        <a class="popup__link" href="ochnaya-dnevnaya-forma-obucheniya.html">Дневное</a>
-                    </li>
-                    <li class="popup__list-item">
-                        <img class="popup__link-img" src="imgs/popup icons/correspondence.svg">
-                        <a class="popup__link" href="zaochnaya-forma-obucheniya.html">Заочное</a>
-                    </li>
-                    <li class="popup__list-item">
-                        <img class="popup__link-img" src="imgs/popup icons/distance.svg">
-                        <a class="popup__link" href="ddo.html">Дистанционное</a>
-                    </li>
-                    <li class="popup__list-item">
-                        <img class="popup__link-img" src="imgs/popup icons/abbraviated.svg">
-                        <a class="popup__link" href="#">Сокращённое</a>
-                    </li>
-                    <li class="popup__list-item">
-                        <img class="popup__link-img" src="imgs/popup icons/too_learn.svg">
-                        <a class="popup__link" href="#">Второе высшее</a>
-                    </li>
-                    <ul>
-                    </div>
-                    <div class="popup__content popup__content--bg">
-                        <ul class="popup__list popup__list--untop">
-                            <li class="popup__list-item">
-                                <a class="popup__link popup__link--wite" href="#">Проходные баллы прошлых лет </a>
-                            </li>
-                            <li class="popup__list-item">
-                                <a class="popup__link popup__link--wite" href="#">Сроки вступительной кампании</a>
-                            </li>
-                            <li class="popup__list-item">
-                                <a class="popup__link popup__link--wite" href="https://priem.bsuir.by">Личный кабинет абитуриента</a>
-                            </li>
-                            <li class="popup__list-item">
-                                <a class="popup__link popup__link--wite" href="#">Общежитие</a>
-                            </li>
-                            <li class="popup__list-item">
-                                <a class="popup__link popup__link--wite" href="#">Иностранным абитуриентам </a>
-                            </li>
-                        </ul>
-                        <div class="popup__info">
-                            <div class="information popup__information">
-                                <p>
-                                    <span class="popup__contacts">Юридический адрес:</span>
-                                </p>
-                                <span class="popup__contacts">220013 г. Минск, ул. П. Бровки, 6 </span>
-                                <p>
-                                    <a href="#">
-                                        <span class="popup__contacts">
-                                            <span class="popup__link popup__link--wite popup__link--footer">Схема корпусов </span>
-                                        </span>
-                                    </a>
-                                </p>
-                            </div>
-                            <div class="popup__info">
-                                <div class="information popup__information">
-                                    <p>
-                                        <span class="popup__contacts">Телефон приемной комиссии:</span>
-                                    </p>
-                                    <p>
-                                        <span class="popup__contacts">+375 17 293-88-15 </span>
-                                    </p>
-                                </div>
-                                <div class="popup__info">
-                                    <div class="information popup__information">
-                                        <p>
-                                            <span class="popup__contacts">Время работы:</span>
-                                        </p>
-                                        <p>
-                                            <span class="popup__contacts">пн-чт: 8:30-17:30</span>
-                                        </p>
-                                        <span class="popup__contacts">пт: 8:30-16:00</span>
-                                    </div>
-                                    <div class="popup__info">
-                                        <div class="information popup__information">
-                                            <p>
-                                                <span class="popup__contacts popup__contacts--unmargin">Email:</span>
-                                            </p>
-                                            <p>
-                                                <span class="popup__contacts popup__contacts--unmargin">
-                                                    <a class="popup__link popup__link--wite popup__link--footer" href="#">prcom@bsuir.by</a>
-                                                </span>
-                                            </p>
-                                        </div>
-                                        <div class="popup__info">
-                                            <div class="information popup__information">
-                                                <span class="popup__contacts popup__contacts--unmargin">Telegram: </span>
-                                                <p>
-                                                    <span class="popup__contacts popup__contacts--unmargin">
-                                                        <a class="popup__link popup__link--wite popup__link--footer" href="https://t.me://BsuirAbiturBot">https://t.me://BsuirAbiturBot</a>
-                                                    </span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="footer__all-size">
+                <div class="wrapper footer__wrapper--info">
+                    <a href="#">
+                        <img class="logo footer__logo" src="imgs/main logo/logo.svg" alt="">
+                    </a>
+                    <div class="footer__content-box">
+                        <div class="information footer__information">
+                            <p class="footer__description">
+                                Юридический адрес:<br>
+                                220013 г. Минск, ул. П. Бровки, 6
+                            </p>
+                            <p class="footer__description">
+                                Телефон приемной комиссии:<br>
+                                +375 17 293-88-15
+                            </p>
+                            <p class="footer__description">
+                                Telegram:<br>
+                                <a class="footer__link" href="https://t.me://BsuirAbiturBot">https://t.me://BsuirAbiturBot</a>
+                            </p>
+                        </div>
+                        <div class="information footer__information">
+                            <p class="footer__description">
+                                Время работы:<br>
+                                пн-чт: 8.30-17.30<br>
+                                пт: 8.30-16.00<br>
+                                &nbsp;
+                            </p>
+                            <p class="footer__description">
+                                Email:<br>
+                                <a class="footer__link" href="mailto:prcom@bsuir.by">prcom@bsuir.by</a>
+                            </p>
                         </div>
                         <p>
                             &nbsp;
                         </p>
                     </div>
+                    <div class="acc footer__acc">
+                    </div>
                 </div>
             </div>
+        </footer>
+        <div class="popup hidden__opacity">
+            <div class="popup__body">
+                <a class="popup__close">
+                    <img src="imgs/icons/close.svg" alt="">
+                </a>
+                <div class="popup__content">
+                    <p>
+                        <!-- <p>
+                            <button class="button button--corner popup__btn">Личный кабинет</button>
+                        </p> -->
+                    </p>
+                    <ul class="popup__list">
+                        <li class="popup__list-item">
+                            <img class="popup__link-img" src="imgs/popup icons/spetial.svg">
+                            <a class="popup__link" href="fakultety-i-spetsialnosti.html">Факультеты и специальности</a>
+                        </li>
+                        <li class="popup__list-item">
+                            <img class="popup__link-img" src="imgs/popup icons/programmer.svg">
+                            <a class="popup__link" href="#">Учиться на программиста</a>
+                        </li>
+                        <li class="popup__list-item">
+                            <img class="popup__link-img" src="imgs/popup icons/courses.svg">
+                            <a class="popup__link" href="#">Подготовительные курсы</a>
+                        </li>
+                        <li class="popup__list-item">
+                            <img class="popup__link-img" src="imgs/popup icons/day.svg">
+                            <a class="popup__link" href="ochnaya-dnevnaya-forma-obucheniya.html">Дневное</a>
+                        </li>
+                        <li class="popup__list-item">
+                            <img class="popup__link-img" src="imgs/popup icons/correspondence.svg">
+                            <a class="popup__link" href="zaochnaya-forma-obucheniya.html">Заочное</a>
+                        </li>
+                        <li class="popup__list-item">
+                            <img class="popup__link-img" src="imgs/popup icons/distance.svg">
+                            <a class="popup__link" href="ddo.html">Дистанционное</a>
+                        </li>
+                        <li class="popup__list-item">
+                            <img class="popup__link-img" src="imgs/popup icons/abbraviated.svg">
+                            <a class="popup__link" href="#">Сокращённое</a>
+                        </li>
+                        <li class="popup__list-item">
+                            <img class="popup__link-img" src="imgs/popup icons/too_learn.svg">
+                            <a class="popup__link" href="#">Второе высшее</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="popup__content popup__content--bg">
+                    <ul class="popup__list popup__list--untop">
+                        <li class="popup__list-item">
+                            <a class="popup__link popup__link--wite" href="#">Проходные баллы прошлых лет </a>
+                        </li>
+                        <li class="popup__list-item">
+                            <a class="popup__link popup__link--wite" href="#">Сроки вступительной кампании</a>
+                        </li>
+                        <li class="popup__list-item">
+                            <a class="popup__link popup__link--wite" href="https://priem.bsuir.by">Личный кабинет абитуриента</a>
+                        </li>
+                        <li class="popup__list-item">
+                            <a class="popup__link popup__link--wite" href="#">Общежитие</a>
+                        </li>
+                        <li class="popup__list-item">
+                            <a class="popup__link popup__link--wite" href="#">Иностранным абитуриентам </a>
+                        </li>
+                    </ul>
+                    <div class="popup__info">
+                        <div class="information popup__information">
+                            <p>
+                                <span class="popup__contacts">Юридический адрес:</span>
+                            </p>
+                            <span class="popup__contacts">220013 г. Минск, ул. П. Бровки, 6 </span>
+                            <p>
+                                <a href="#">
+                                    <span class="popup__contacts">
+                                        <span class="popup__link popup__link--wite popup__link--footer">Схема корпусов </span>
+                                    </span>
+                                </a>
+                            </p>
+                        </div>
+                        <div class="popup__info">
+                            <div class="information popup__information">
+                                <p>
+                                    <span class="popup__contacts">Телефон приемной комиссии:</span>
+                                </p>
+                                <p>
+                                    <span class="popup__contacts">+375 17 293-88-15 </span>
+                                </p>
+                            </div>
+                            <div class="popup__info">
+                                <div class="information popup__information">
+                                    <p>
+                                        <span class="popup__contacts">Время работы:</span>
+                                    </p>
+                                    <p>
+                                        <span class="popup__contacts">пн-чт: 8:30-17:30</span>
+                                    </p>
+                                    <span class="popup__contacts">пт: 8:30-16:00</span>
+                                </div>
+                                <div class="popup__info">
+                                    <div class="information popup__information">
+                                        <p>
+                                            <span class="popup__contacts popup__contacts--unmargin">Email:</span>
+                                        </p>
+                                        <p>
+                                            <span class="popup__contacts popup__contacts--unmargin">
+                                                <a class="popup__link popup__link--wite popup__link--footer" href="#">prcom@bsuir.by</a>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="popup__info">
+                                        <div class="information popup__information">
+                                            <span class="popup__contacts popup__contacts--unmargin">Telegram: </span>
+                                            <p>
+                                                <span class="popup__contacts popup__contacts--unmargin">
+                                                    <a class="popup__link popup__link--wite popup__link--footer" href="https://t.me://BsuirAbiturBot">https://t.me://BsuirAbiturBot</a>
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        &nbsp;
+                    </p>
+                </div>
+            </div>
+        </div>
 <!-- Google Tag Manager -->
         <script>
             (function(w,d,s,l,i){
